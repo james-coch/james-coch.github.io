@@ -1,0 +1,82 @@
+---
+name: 'Andrew Riddles'
+title: 'Web Architect at Carleton'
+description: 'I worked with Jack during 2021 and 2022. Everyone was very impressed with Jack from the very start as he suggested great solutions for bugs on his first day. He was a consistent team player despite working very remotely from our home base. He was extremely knowledgeable, committed and communicative. Any team would be lucky to have Jack working with them.'
+ref_image: '/images/andrew.jpg'
+tags: 'nextjs, react'
+linkedin: 'https://www.linkedin.com/in/andrew-riddles-b939a/'
+rating: 4.7
+---
+
+> Absolute Import is a great way to clean up your imports
+
+## Example
+
+This is the usual way of importing with `..` operator to go back 1 folder:
+
+```jsx
+import Nav from '../../components/Nav';
+```
+
+And this is the clean import using absolute import:
+
+```jsx
+import Nav from '@/components/Nav';
+```
+
+---
+
+# For Next.js
+
+## Add this to root with the filename of `jsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"]
+    }
+  },
+  "exclude": ["node_modules", ".next"]
+}
+```
+
+---
+
+# For Create React App
+
+## Add this to root with the filename of `jsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "jsx": "preserve",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./components/*"],
+      "@/pages/*": ["./pages/*"],
+      "@/contexts/*": ["./contexts/*"],
+      "@/routes/*": ["./routes/*"]
+    }
+  },
+  "exclude": ["node_modules", "build"]
+}
+```
+
+## And in craco.config.js
+
+```js
+const path = require('path');
+
+module.exports = {
+  // ...existing code
+  webpack: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+};
+```
